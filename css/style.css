@@ -13,37 +13,39 @@ p {
 
 body {
     display: grid;
-    grid-template-rows: 100px 1fr 100px;
-    grid-template-columns: 200px 1fr 1fr;
+    grid-template-rows: 
+        [leftnav-start header-start]
+        100px [header-end main-start]
+        1fr [leftnav-end main-end footer-start]
+        100px [footer-end];
+    grid-template-columns:
+        [leftnav-start footer-start]
+        200px [leftnav-end header-start main-start]
+        1fr
+        1fr [header-end main-end footer-end];
 
 }
 
 header {
-    grid-row-start: 1;
-    grid-row-end: 2;
-    grid-column-start: 2;
-    grid-column-end: 4;
-
+    grid-row: header;
+    grid-column: header;
+    
     background-color: #080B12;
 }
 
 main {
-    grid-row-start: 2;
-    grid-row-end: 3;
-    grid-column-start: 2;
-    grid-column-end: 4;
-    display: grid;
+    grid-column: main;
+    grid-row: main;
 
-    position: relative;
+    display: grid;
 }
 
 .left-nav {
+    grid-column: leftnav;
+    grid-row: leftnav;
+    
     background-color: #000000;
-
-    grid-row-start: 1;
-    grid-row-end: 3;
-    grid-column-start: 1;
-    grid-column-end: 2;
+    
 }
 
 .albums {
@@ -52,11 +54,8 @@ main {
 }
 
 footer {
+    grid-row: footer;
+    grid-column: footer;
+    
     background-color: #282828;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    grid-column-start: 1;
-    grid-column-end: 4;
-
-    position: sticky;
 }
