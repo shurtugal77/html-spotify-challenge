@@ -11,9 +11,21 @@
 
 p {
     color: white;
-    align-self: center;
-    justify-self: center;
 }
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    border-left: 3px solid #7BB32B;
+    padding-left: 20px;
+}
+
 
 .object-fit-contain {
     object-fit: contain;
@@ -54,7 +66,7 @@ main {
     display: grid;
     grid-template-rows: 100px 1fr;
 
-    padding: 0 5%;
+    padding: 0 7%;
 }
 
 .logo {
@@ -75,12 +87,13 @@ aside {
     grid-template-rows: 1fr;
     align-items: center;
 
+
     gap: 10px;
 
     padding-bottom: 30px;
 }
 
-.left-menu > li {
+.left-menu > a {
     display: grid;
     grid-template-columns: .3fr 1fr;
 
@@ -95,13 +108,31 @@ aside {
     display: grid;
     grid-auto-rows: min-content;
     /* grid-template-rows: repeat(10, min-content); */
+
+    gap: 20px;
 }
 
-.create-playlist {
+.playlist-menu > h3 {
+    text-transform: uppercase;
+}
+
+.create-playlist-container {
     display: grid;
-    grid-template-columns: .3fr 1fr;
+    grid-template-columns: min-content 1fr;
+    align-items: center;
+
+    gap: 5px;
 }
 
+.create-playlist-icon {
+    height: 40px;
+}
+
+.playlist-entry {
+    color: #6F6F6F;
+    font-weight: bold;
+    font-size: 17px;
+}
 
 .profile-menu {
     display: grid;
@@ -110,6 +141,22 @@ aside {
     align-content: end;
 }
 
+.app-install-container {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    align-items: center;
+    gap: 5px;
+}
+
+.app-install-icon {
+    height: 18px;
+}
+
+.app-install-text {
+    color: #6F6F6F;
+    font-weight: bold;
+    font-size: 18px;
+}
 
 .albums {
     background-color: #141922;
