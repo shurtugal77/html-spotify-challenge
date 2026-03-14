@@ -76,6 +76,10 @@ main {
 
     /* Padding for whole left navigation */
     padding-left: var(--left-nav-padding);
+    padding-right: var(--left-nav-padding);
+
+    /* Padding between Player and Profile */
+    padding-bottom: .5rem;
 }
 
 
@@ -148,25 +152,52 @@ aside {
 .profile-menu {
     display: grid;
     grid-auto-rows: min-content;
-
     align-content: end;
+
+    gap: .8rem;
+}
+
+.hr {
+    /* TODO: make a thinner line (not with border and hr?) */
+    border: .1px solid #6F6F6F;
+    border-radius: 10px;
 }
 
 .app-install-container {
     display: grid;
     grid-template-columns: min-content 1fr;
     align-items: center;
-    gap: 5px;
+    gap: .3rem;
 }
 
 .app-install-icon {
-    height: 18px;
+    height: .8rem;
 }
 
 .app-install-text {
     color: #6F6F6F;
     font-weight: bold;
-    font-size: 18px;
+    font-size: .8rem;
+}
+
+.profile-container {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    align-items: center;
+    gap: .3rem;
+}
+
+.profile-icon {
+    background-color: #6F6F6F;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: contain;
+}
+
+.profile-text{ 
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
 .albums {
