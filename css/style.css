@@ -1,5 +1,7 @@
 :root {
     color: white;
+    --left-nav-padding: 1rem;
+    --vertical-border-width: 3px
 }
 
 /* Modern Reset */
@@ -15,7 +17,12 @@ p {
 
 a {
     text-decoration: none;
-    padding-left: 7%;
+
+    /* Padding between the green active/hover selector and the menu icons. Calculation: difference between the applied left-nav padding and the border width, so that the svg perfectly aligns with the grid line again*/
+    padding-left: calc(var(--left-nav-padding) - var(--vertical-border-width));
+
+    /* Menu a-tags are insible when not hovered - but the standard padding is present with this solution */
+    border-left: var(--vertical-border-width) solid transparent;
 }
 
 a:visited {
@@ -23,13 +30,14 @@ a:visited {
 }
 
 a:hover {
-    border-left: 3px solid #7BB32B;
+    border-left: var(--vertical-border-width) solid #7BB32B;
 }
 
 
 .object-fit-contain {
     object-fit: contain;
 }
+
 
 body {
     display: grid;
@@ -66,8 +74,10 @@ main {
     display: grid;
     grid-template-rows: 100px 1fr;
 
-    /* margin: 0 7%; */
+    /* Padding for whole left navigation */
+    padding-left: var(--left-nav-padding);
 }
+
 
 .logo {
     width: 150px;
@@ -78,8 +88,6 @@ main {
 aside {
     display: grid;
     grid-template-rows: min-content 1fr 100px;
-    
-
 }
 
 .left-menu {
@@ -87,10 +95,13 @@ aside {
     grid-template-rows: 1fr;
     align-items: center;
 
-
     gap: 10px;
 
     padding-bottom: 30px;
+
+    /* Calculation: move the whole section to the left by the width of the whole nav-menu to have the active/hover selector on the left grid line */
+    position: relative;
+    left: calc(-1* var(--left-nav-padding));
 }
 
 .left-menu > a {
