@@ -288,6 +288,40 @@ footer {
 
 .player-controls {
     grid-column: player-controls;
+
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+
+    padding: 0 50px;
+}
+
+.control-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, min-content);
+    justify-self: center;
+    gap: 15px;
+
+    align-items: center;
+    justify-items: center;
+}
+
+.control-buttons > * > img {
+    width: 25px;
+}
+
+#play-button {
+    width: 40px;
+    fill: green;
+}
+
+#play-button:hover {
+    fill: red
+}
+
+.progress-bar {
+    display: grid;
+    grid-template-columns: 30px 1fr 30px;
 }
 
 .volume-control {
