@@ -157,12 +157,6 @@ aside {
     gap: .8rem;
 }
 
-.hr {
-    /* TODO: make a thinner line (not with border and hr?) */
-    border: .1px solid #6F6F6F;
-    border-radius: 10px;
-}
-
 .app-install-container {
     display: grid;
     grid-template-columns: min-content 1fr;
@@ -171,13 +165,18 @@ aside {
 }
 
 .app-install-icon {
-    height: .8rem;
+    width: .8rem;
 }
 
 .app-install-text {
     color: #6F6F6F;
     font-weight: bold;
     font-size: .8rem;
+}
+
+.line-divider {
+    border-top: 1px solid #6F6F6F;
+    border-radius: 10px;
 }
 
 .profile-container {
@@ -190,14 +189,14 @@ aside {
 .profile-icon {
     background-color: #6F6F6F;
     border-radius: 50%;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.1rem;
+    height: 1.1rem;
     object-fit: contain;
 }
 
 .profile-text{ 
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .albums {
