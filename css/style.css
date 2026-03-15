@@ -293,15 +293,19 @@ footer {
     grid-template-rows: 1fr 1fr;
     align-items: center;
 
-    padding: 0 50px;
+    /* Padding for whole control section */
+    padding: 0 5%;
 }
 
 .control-buttons {
     display: grid;
     grid-template-columns: repeat(5, min-content);
-    justify-self: center;
     gap: 15px;
 
+    /* Better solution for the container than using an insane padding */
+    justify-self: center;
+
+    /* Alignment for buttons */
     align-items: center;
     justify-items: center;
 }
@@ -310,20 +314,73 @@ footer {
     width: 25px;
 }
 
+/* Bigger size for play button compared to all other controls */
 #play-button {
     width: 40px;
-    fill: green;
-}
-
-#play-button:hover {
-    fill: red
 }
 
 .progress-bar {
     display: grid;
     grid-template-columns: 30px 1fr 30px;
+    gap: 50px;
+
+    align-items: center;
+    justify-items: center;
+
+    /* Padding only for progress bar */
+    padding: 0 10%;
+}
+
+.progress-bar-background {
+    background-color: #5A5A5A;
+    border-radius: 20px;
+    height: 6px;
+
+    justify-self: normal;
+}
+
+.progress-bar-active {
+    background-color: #C1C1C1;
+    border-radius: 20px;
+    height: 6px;
+    width: 30%;
+}
+
+.progress-bar-time {
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .volume-control {
     grid-column: volume-control;
+
+    display: grid;
+    grid-template-columns: repeat(3, min-content) 8rem;
+    gap: 14px;
+
+    justify-self: end;
+
+    align-items: center;
+    justify-items: center;
+    padding-right: var(--left-nav-padding);
+}
+
+.fa-solid {
+    font-size: 18px;
+}
+
+.volume-control-background {
+    background-color: #5A5A5A;
+    border-radius: 20px;
+    height: 6px;
+
+    width: 100%;
+    max-width: 150px;
+}
+
+.volume-control-active {
+    background-color: #C1C1C1;
+    border-radius: 20px;
+    height: 6px;
+    width: 65%;
 }
