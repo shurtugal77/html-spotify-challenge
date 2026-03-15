@@ -3,7 +3,11 @@
     --left-nav-padding: 1rem;
     --vertical-border-width: 3px;
 
-    --left-nav-width: 250px; 
+    --left-nav-width: 250px;
+
+
+    /* Colors */
+    --spotify-grey: #878787;
 }
 
 /* Modern Reset */
@@ -242,17 +246,20 @@ footer {
     1fr [player-controls-end volume-control-start]
     .3fr [volume-control-end];
 
-    align-content: center;
-    justify-content: center;
+    align-items: center;
 }
 
 .active-song {
     grid-column: active-song;
 
     display: grid;
-    grid-template-columns: repeat(4, min-content);
-    gap: 10px;
+    grid-template-columns: .5fr 1fr .2fr .2fr;
+    gap: 14px;
 
+    padding-left: var(--left-nav-padding);
+    padding-right: 10px;
+
+    justify-items: center;
     align-items: center;
 }
 
@@ -260,8 +267,23 @@ footer {
     width: 60px;
 }
 
-.active-song-icons {
-    height: 15px;
+.active-song-details {
+    justify-self: start;
+}
+
+.active-song-name {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.active-song-interpret {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--spotify-grey) ;
+}
+
+.active-song-icon {
+    height: 18px;
 }
 
 .player-controls {
