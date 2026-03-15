@@ -62,6 +62,8 @@ body {
         1fr [header-end main-end footer-end];
 }
 
+
+/* Top Header Section */
 .top-menu {
     grid-row: header;
     grid-column: header;
@@ -95,6 +97,8 @@ main {
     display: grid;
 }
 
+
+/* Left Section */
 .left-nav {
     grid-column: leftnav;
     grid-row: leftnav;
@@ -229,11 +233,45 @@ aside {
     font-size: 1.1rem;
 }
 
-.albums {
+
+/* Main Section */
+.main-music-container {
     background-color: #141922;
     height: calc(100svh - 200px);
+
+    display: grid;
+    grid-template-rows: 80px 1fr;
+
+    /* align-items: center; */
+    /* justify-items: center; */
+
 }
 
+.music-type-nav {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(min-content,max-content));
+    gap: 30px;
+
+    justify-self: center;
+    place-items: center;
+
+    /* padding: 0 20%; */
+
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-align: center;
+}
+
+.music-type-nav > a {
+    color: var(--spotify-grey);
+}
+
+.albums-container {
+    
+}
+
+/* Footer Section */
 footer {
     grid-row: footer;
     grid-column: footer;
@@ -336,6 +374,7 @@ footer {
     border-radius: 20px;
     height: 6px;
 
+    /* TODO: make progress bar 100% width and define the max width of the grid column  */
     justify-self: normal;
 }
 
