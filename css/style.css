@@ -15,9 +15,17 @@ p {
     color: white;
 }
 
+/* Toggle underline for all a-tags */
 a {
     text-decoration: none;
+}
 
+/* Toggle visited link color for all a-tags */
+a:visited {
+    color: white;
+}
+
+.left-menu-button {
     /* Padding between the green active/hover selector and the menu icons. Calculation: difference between the applied left-nav padding and the border width, so that the svg perfectly aligns with the grid line again*/
     padding-left: calc(var(--left-nav-padding) - var(--vertical-border-width));
 
@@ -25,11 +33,8 @@ a {
     border-left: var(--vertical-border-width) solid transparent;
 }
 
-a:visited {
-    color: white;
-}
 
-a:hover {
+.left-menu-button:hover {
     border-left: var(--vertical-border-width) solid #7BB32B;
 }
 
@@ -54,8 +59,27 @@ body {
 .top-menu {
     grid-row: header;
     grid-column: header;
-    
     background-color: #080B12;
+
+    display: grid;
+    align-items: center;
+    justify-items: end;
+}
+
+.top-menu-button {
+    margin-right: 10px;
+    
+    border: 1px solid white;
+    border-radius: 1.5rem;
+    padding: 10px 35px;
+
+    text-transform: uppercase;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.top-menu-button:hover {
+    background-color: #7BB32B;
 }
 
 main {
