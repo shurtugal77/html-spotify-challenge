@@ -1,7 +1,9 @@
 :root {
     color: white;
     --left-nav-padding: 1rem;
-    --vertical-border-width: 3px
+    --vertical-border-width: 3px;
+
+    --left-nav-width: 250px; 
 }
 
 /* Modern Reset */
@@ -51,7 +53,7 @@ body {
         1fr [leftnav-end main-end footer-start]
         100px [footer-end];
     grid-template-columns:
-        [leftnav-start footer-start] 200px [leftnav-end header-start main-start]
+        [leftnav-start footer-start] var(--left-nav-width) [leftnav-end header-start main-start]
         1fr
         1fr [header-end main-end footer-end];
 }
@@ -233,4 +235,39 @@ footer {
     grid-column: footer;
     
     background-color: #282828;
+
+    display: grid;
+    grid-template-columns:
+    [active-song-start] var(--left-nav-width) [active-song-end player-controls-start]
+    1fr [player-controls-end volume-control-start]
+    .3fr [volume-control-end];
+
+    align-content: center;
+    justify-content: center;
+}
+
+.active-song {
+    grid-column: active-song;
+
+    display: grid;
+    grid-template-columns: repeat(4, min-content);
+    gap: 10px;
+
+    align-items: center;
+}
+
+.active-song-image {
+    width: 60px;
+}
+
+.active-song-icons {
+    height: 15px;
+}
+
+.player-controls {
+    grid-column: player-controls;
+}
+
+.volume-control {
+    grid-column: volume-control;
 }
