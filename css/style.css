@@ -8,6 +8,7 @@
 
     /* Colors */
     --spotify-grey: #878787;
+    --spotify-green: #7BB32B;
 }
 
 /* Modern Reset */
@@ -41,7 +42,7 @@ a:visited {
 
 
 .left-menu-button:hover {
-    border-left: var(--vertical-border-width) solid #7BB32B;
+    border-left: var(--vertical-border-width) solid var(--spotify-green);
 }
 
 
@@ -87,7 +88,7 @@ body {
 }
 
 .update-app-button:hover {
-    background-color: #7BB32B;
+    background-color: var(--spotify-green);
 }
 
 main {
@@ -263,9 +264,60 @@ aside {
     text-align: center;
 }
 
+
 .music-type-nav > a {
     color: var(--spotify-grey);
+    position: relative;
+    width: max-content;
 }
+
+
+.music-type-nav > a::after {
+    --underline-width: 40px;
+
+    content: '';
+    background: transparent;
+    width: var(--underline-width);
+    height: 2px;
+    border-radius: 100px;
+
+    
+    position: absolute;
+    
+    /* Start exactly in the middle of the a-tag */
+    bottom: -1px;
+    left: calc(50% - var(--underline-width)/2);
+}
+
+.music-type-nav > a:hover::after {
+    /* background: linear-gradient(to right, red, blue); */
+    background: var(--spotify-green);
+    transition: 300ms;
+    
+    /* height: 2px; */
+    left: 0;
+    width: 100%;
+}
+
+/* TODO: Better implementation of id */
+
+#active-menu-item::after {
+    --underline-width: 40px;
+
+    content: '';
+    background: green;
+    width: var(--underline-width);
+    height: 2px;
+    border-radius: 100px;
+
+    
+    position: absolute;
+    
+    /* Start exactly in the middle of the a-tag */
+    bottom: 0;
+    left: calc(50% - var(--underline-width)/2);
+} 
+
 
 .albums-container {
     /* TODO: Playe Controls should stay on top. Main grids needs to be adjusted so that the page can scroll underneath! */
