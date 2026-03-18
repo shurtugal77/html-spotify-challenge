@@ -92,13 +92,6 @@ body {
     background-color: var(--spotify-light-green);
 }
 
-main {
-    grid-column: main;
-    grid-row: main;
-
-    display: grid;
-}
-
 
 /* Left Section */
 .left-nav {
@@ -237,6 +230,13 @@ aside {
 
 
 /* Main Section */
+main {
+    grid-column: main;
+    grid-row: main;
+
+    display: grid;
+}
+
 .main-music-container {
     background-color: #141922;
     height: calc(100svh - 200px);
