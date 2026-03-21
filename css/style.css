@@ -239,7 +239,10 @@ main {
 
 .main-music-container {
     background-color: #141922;
+
+    /* TODO: Remove this janky calculation for the dynamic scrolling in the album area */
     height: calc(100svh - 200px);
+    /* height: 1fr; */
 
     display: grid;
     grid-template-rows: 80px 1fr;
@@ -317,8 +320,38 @@ main {
 
 
 .albums-container {
-    /* TODO: Playe Controls should stay on top. Main grids needs to be adjusted so that the page can scroll underneath! */
+    /* TODO: Player Controls should stay on top. Main grids needs to be adjusted so that the page can scroll underneath! */
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
 }
+
+.recently-played-container {
+    display: grid;
+    /* Title, Subtitle, Card-Container */
+    grid-template-rows: 50px 30px 1fr;
+
+    align-items: center;
+
+}
+
+/* minmax(min(300px, 100%), 1fr) */
+
+.album-card-container {
+    display: grid;
+    /* grid-template-columns: repeat(auto-fit, min(150vw, 200px)); */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+    padding: 0 5%;
+    /* align-self: center; */
+
+    align-self: normal;
+}
+
+.album-card{
+    
+}
+
+
 
 /* Footer Section */
 footer {
