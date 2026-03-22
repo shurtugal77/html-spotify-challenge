@@ -235,32 +235,39 @@ main {
     grid-row: main;
 
     display: grid;
+
+    /* TODO: Remove this janky calculation for the dynamic scrolling in the album area */
+    /* height: 1fr; */
+    height: calc(100svh - 200px);
 }
 
 .main-music-container {
     background-color: #141922;
 
-    /* TODO: Remove this janky calculation for the dynamic scrolling in the album area */
-    height: calc(100svh - 200px);
-    /* height: 1fr; */
-
     display: grid;
-    grid-template-rows: 80px 1fr;
+
+    /* TODO: This is static and not responsive */
+    grid-template-rows: max(1fr, 100px) 1fr;
+    /* grid-auto-rows: auto; */
+
 
     /* align-items: center; */
     /* justify-items: center; */
+    /* justify-content: center; */
 
 }
 
 .music-nav {
     display: grid;
-    grid-template-columns: repeat(6, minmax(min-content,max-content));
-    gap: 30px;
+    /* grid-template-columns: repeat(6, minmax(min-content,max-content)); */
+    /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
+    grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr));
+    gap: 10px;
 
-    justify-self: center;
+    /* justify-self: center; */
     place-items: center;
 
-    /* padding: 0 20%; */
+    padding: 1% 5%;
 
     text-transform: uppercase;
     font-size: 1.1rem;
@@ -337,16 +344,15 @@ main {
 }
 
 .recently-played-container > h1 {
-    
+    padding-bottom: 10px;
 }
 
 .album-card-container {
     display: grid;
     /* grid-template-columns: repeat(auto-fit, min(150vw, 200px)); */
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    /* grid-template-columns: repeat(auto-fit, 160px); */
     gap: 10px;
-
-
 }
 
 .album-card {
