@@ -247,8 +247,9 @@ main {
     display: grid;
 
     /* TODO: This is static and not responsive */
-    grid-template-rows: max(1fr, 100px) 1fr;
+    /* grid-template-rows: max(1fr, 100px) 1fr; */
     /* grid-auto-rows: auto; */
+    grid-template-rows: 100px 1fr ;
 
 
     /* align-items: center; */
@@ -259,12 +260,11 @@ main {
 
 .music-nav {
     display: grid;
-    /* grid-template-columns: repeat(6, minmax(min-content,max-content)); */
-    /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
-    grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+    /* grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr)); */
     gap: 10px;
+    max-height: 100px;
 
-    /* justify-self: center; */
     place-items: center;
 
     padding: 1% 5%;
@@ -273,13 +273,60 @@ main {
     font-size: 1.1rem;
     font-weight: 800;
     text-align: center;
+
+    /* What is this calculation for bro?
+    6rem is the same MIN value like in the auto-fit grid.
+    Multiply times 2 (first example) for the current number of columns we have
+    Add 10px which is the gap size. x-times MINUS 1 the amount of columns
+    6 columns == 5 gaps == 5 x 10px
+    This means: "A new row will appear when the screen size, is smaller than this calculation" */
+
+    container-type: inline-size;
+
+    /* when we have 2 columns (visually 1)*/
+    @container (width >= calc(6rem * 2 + 10px)) {
+        .music-nav-item {
+            /* border: 1px dotted white; */
+            grid-column: span 2;
+        }
+    }
+    
+    /* when we have 4 columns (visually 2)* - no need for this with 6 nav-items/
+    @container (calc(6rem * 4 + 30px) < width < calc(6rem * 6 + 50px)) {
+    }
+
+    /* when we have 6 columns (visually 3) - no need for this with 6 nav-items*/
+    /* @container (calc(6rem * 6 + 50px) < width < calc(6rem * 8 + 70px)) {
+    } */
+
+    /* when we have 8 columns (visually 4) */
+    @container (width > calc(6rem * 8 + 70px)) and ( width < calc(6rem * 10 + 90px)) {
+        .music-nav-item:nth-child(4n + 5):last-child {
+            grid-column: 4 / 6;
+        }
+
+        &:has(:nth-child(4n + 6):last-child) > :nth-last-child(2) {
+            grid-column: 3 / 5;
+        }
+
+        &:has(:nth-child(4n + 7):last-child) > :nth-last-child(3) {
+            grid-column: 2 / 4;
+        }
+    }
+
+    /* when we have 10 columns (visually 5) */
+    @container (width > calc(6rem * 10 + 90px)) and (width < calc(6rem * 12 + 110px)) {
+        .music-nav-item:nth-child(4n + 6):last-child {
+            grid-column: 5 / 7;
+        }
+    }
 }
 
 
 .music-nav > a {
     color: var(--spotify-grey);
     position: relative;
-    width: max-content;
+    /* width: max-content; */
 }
 
 .music-nav-item::after {
