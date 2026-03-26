@@ -1,15 +1,25 @@
 :root {
     color: white;
+
+    /* Sizes */
     --left-nav-padding: 1rem;
     --vertical-border-width: 3px;
 
     --left-nav-width: 250px;
 
+    /* Footer Sizes */
 
     /* Colors */
     --spotify-grey: #878787;
     --spotify-light-green: #7BB32B;
     --spotify--dark-green: #17904B;
+
+    --progressbar-background: #5A5A5A;
+    --progressbar-active: #C1C1C1;
+
+    /* Fake controls for progress bars */
+    --song-percentage: 30%;
+    --volume-percentage: 65%;
 }
 
 /* Modern Reset */
@@ -462,7 +472,7 @@ footer {
     [active-song-start]
     var(--left-nav-width) [active-song-end player-controls-start]
     1fr [player-controls-end volume-control-start]
-    300px [volume-control-end];
+    auto [volume-control-end];
 
     align-items: center;
 }
@@ -512,7 +522,7 @@ footer {
     align-items: center;
 
     /* Padding for whole control section */
-    padding: 0 5%;
+    padding: 0 2rem;
 }
 
 .control-buttons {
@@ -539,34 +549,39 @@ footer {
 
 .progress-bar {
     display: grid;
-    grid-template-columns: 30px 1fr 30px;
+
+    /* Minmax to define the minimum width the progress bar will shrink to */
+    grid-template-columns: min-content minmax(6rem, 1fr) min-content;
     gap: 50px;
 
     align-items: center;
     justify-items: center;
 
     /* Padding only for progress bar */
-    padding: 0 10%;
+    padding: 0 5.5rem;
 }
 
 .progress-bar-background {
-    background-color: #5A5A5A;
+    background-color: var(--progressbar-background);
     border-radius: 20px;
     height: 6px;
-
-    /* TODO: make progress bar 100% width and define the max width of the grid column  */
-    justify-self: normal;
+    /* Necessary to always draw the background */
+    width: 100%;
 }
 
 .progress-bar-active {
-    background-color: #C1C1C1;
+    background-color: var(--progressbar-active);
     border-radius: 20px;
     height: 6px;
-    width: 30%;
+}
+
+.progress-song-percentage {
+    /* Fake controls the progress of the song */
+    width: var(--song-percentage);
 }
 
 .progress-bar-time {
-    font-size: 13px;
+    font-size: .8rem;
     font-weight: 600;
 }
 
@@ -574,32 +589,22 @@ footer {
     grid-column: volume-control;
 
     display: grid;
-    grid-template-columns: repeat(3, min-content) 8rem;
+    grid-template-columns: repeat(3, 1fr) 8rem;
     gap: 14px;
-
-    justify-self: end;
 
     align-items: center;
     justify-items: center;
+
+    /* Grid column is set to auto - so we apply a right padding that the volume control always has the same padding as the left sidebar */
     padding-right: var(--left-nav-padding);
 }
 
+/* Size for all font-awesome icons */
 .fa-solid {
     font-size: 18px;
 }
 
-.volume-control-background {
-    background-color: #5A5A5A;
-    border-radius: 20px;
-    height: 6px;
-
-    width: 100%;
-    max-width: 150px;
-}
-
-.volume-control-active {
-    background-color: #C1C1C1;
-    border-radius: 20px;
-    height: 6px;
-    width: 65%;
+.volume-percentage {
+    /* Fake controls the volume */
+    width: var(--volume-percentage);
 }
