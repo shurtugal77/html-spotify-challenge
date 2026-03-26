@@ -391,12 +391,13 @@ main {
 }
 
 /* Variant without a subtitle */
-#recently-played-container {
+.albums-container .recently-played-container {
     grid-template-rows: max-content 1fr;
 }
 
 .album-card-container {
     display: grid;
+    
     /* Use auto-fill here to ensure album cards are always the same grid size - regardless of the columns */
     grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
     gap: 10px;
@@ -415,8 +416,8 @@ main {
     align-self: start;
 }
 
-/* Variant for the user created content */
-.user-created-container > .album-card-container > .album-card {
+/* Variant for the album cards without subtitles */
+article:not(.recently-played-container) > .album-card-container > .album-card {
     grid-template-rows: 1fr min-content;
 }
 
