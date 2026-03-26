@@ -54,14 +54,19 @@ a:visited {
 
 body {
     display: grid;
+
     grid-template-rows: 
         [leftnav-start header-start] 100px [header-end main-start]
         1fr [leftnav-end main-end footer-start]
         100px [footer-end];
+
     grid-template-columns:
         [leftnav-start footer-start] var(--left-nav-width) [leftnav-end header-start main-start]
-        1fr
         1fr [header-end main-end footer-end];
+
+    /* vh is used as a fallback value. svh is better for modern browsers. extends the overall page to the screen height */
+    min-height: 100vh;
+    min-height: 100svh;
 }
 
 
@@ -69,6 +74,10 @@ body {
 .top-menu {
     grid-row: header;
     grid-column: header;
+    position: sticky;
+    z-index: 1001;
+    top: 0;
+
     background-color: #080B12;
 
     display: grid;
@@ -234,16 +243,12 @@ main {
     grid-column: main;
     grid-row: main;
 
+    /* Needs to be grid so it can flow between the grid lanes */
     display: grid;
-
-    /* TODO: Remove this janky calculation for the dynamic scrolling in the album area */
-    /* height: 1fr; */
-    height: calc(100svh - 200px);
 }
 
 .main-music-container {
     background-color: #141922;
-
     display: grid;
 
     /* TODO: This is static and not responsive */
@@ -443,6 +448,9 @@ article:not(.recently-played-container) > .album-card-container > .album-card {
 footer {
     grid-row: footer;
     grid-column: footer;
+    position: sticky;
+    bottom: 0;
+    z-index: 1001;
     
     background-color: #282828;
 
