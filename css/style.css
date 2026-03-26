@@ -397,7 +397,7 @@ main {
 
 .album-card-container {
     display: grid;
-    
+
     /* Use auto-fill here to ensure album cards are always the same grid size - regardless of the columns */
     grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
     gap: 10px;
@@ -433,6 +433,10 @@ article:not(.recently-played-container) > .album-card-container > .album-card {
 
 .ablum-subtitle {
     color: var(--spotify-grey);
+}
+
+.profile-circle {
+    border-radius: 50%;
 }
 
 /* Footer Section */
