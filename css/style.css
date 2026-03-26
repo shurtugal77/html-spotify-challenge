@@ -23,48 +23,53 @@ p {
     color: white;
 }
 
-/* Toggle underline for all a-tags */
+
 a {
+    /* Toggle underline for all a-tags */
     text-decoration: none;
 }
 
-/* Toggle visited link color for all a-tags */
 a:visited {
+    /* Toggle visited link color for all a-tags */
     color: white;
 }
 
 .left-menu-button {
-    /* Padding between the green active/hover selector and the menu icons. Calculation: difference between the applied left-nav padding and the border width, so that the svg perfectly aligns with the grid line again*/
+    /* Padding between the green active/hover selector and the menu icons.
+    Calculation: difference between the applied left-nav padding and the border width, so that the svg perfectly aligns with the grid line again*/
     padding-left: calc(var(--left-nav-padding) - var(--vertical-border-width));
 
-    /* Menu a-tags are insible when not hovered - but the standard padding is present with this solution */
+    /* A-tags are insible when not hovered - but the standard padding is present with this solution */
     border-left: var(--vertical-border-width) solid transparent;
 }
-
 
 .left-menu-button:hover {
     border-left: var(--vertical-border-width) solid var(--spotify-light-green);
 }
 
-
 .object-fit-contain {
     object-fit: contain;
 }
 
-
 body {
     display: grid;
 
+    /* row setup with custom named grid lines */
     grid-template-rows: 
-        [leftnav-start header-start] 100px [header-end main-start]
+        [leftnav-start header-start]
+        100px [header-end main-start]
         1fr [ main-end footer-start]
         100px [footer-end];
 
+    /* column setup with custom named grid lines */
     grid-template-columns:
-        [leftnav-start footer-start] var(--left-nav-width) [leftnav-end header-start main-start]
+        [leftnav-start footer-start]
+        var(--left-nav-width) [leftnav-end header-start main-start]
         1fr [header-end main-end footer-end];
 
-    /* vh is used as a fallback value. svh is better for modern browsers. extends the overall page to the screen height */
+    /* vh is used as a fallback value.
+    svh is better for modern browsers.
+    always extends the body to the screen viewport height */
     min-height: 100vh;
     min-height: 100svh;
 }
@@ -74,6 +79,8 @@ body {
 .top-menu {
     grid-row: header;
     grid-column: header;
+
+    /* Make the top menu sticky */
     position: sticky;
     z-index: 1001;
     top: 0;
@@ -84,6 +91,7 @@ body {
     align-items: center;
     justify-items: end;
 }
+
 
 .update-app-button {
     margin-right: 10px;
@@ -106,15 +114,18 @@ body {
 .left-nav {
     grid-column: leftnav;
     grid-row: leftnav;
+    
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    
     background-color: #000000;
 
+    /* Make the sidebar sticky and always the height of the viewport height minus the footer (regardless of scrolling)
+    align-self to the start is very important here, so the grid container does not span the whole column! */
     position: sticky;
     top: 0;
     align-self: start;
     min-height: calc(100svh - 100px);
-
-    display: grid;
-    grid-template-rows: 100px 1fr;
 
     /* Padding for whole left navigation */
     padding-left: var(--left-nav-padding);
@@ -124,7 +135,6 @@ body {
     padding-bottom: .5rem;
 }
 
-
 .logo {
     width: 150px;
     align-self: center;
@@ -133,16 +143,19 @@ body {
 
 aside {
     display: grid;
-    grid-template-rows: min-content 1fr 100px;
+    /* 1fr on purpose for the profile-menu, so that the left-menu and playlist-menu can extend */
+    grid-template-rows: auto auto 1fr;
+
+    /* Gap between menu, playlists and profile (better than all the manual paddings) */
+    gap: 30px;
 }
 
 .left-menu {
     display: grid;
     grid-template-rows: 1fr;
+
     align-items: center;
     gap: 10px;
-
-    padding-bottom: 30px;
 
     /* Calculation: move the whole section to the left by the width of the whole nav-menu to have the active/hover selector on the left grid line */
     position: relative;
@@ -163,7 +176,6 @@ aside {
 .playlist-menu {
     display: grid;
     grid-auto-rows: min-content;
-    /* grid-template-rows: repeat(10, min-content); */
 
     gap: 20px;
 }
@@ -202,6 +214,7 @@ aside {
     display: grid;
     grid-template-columns: min-content 1fr;
     align-items: center;
+    
     gap: .3rem;
 }
 
@@ -251,28 +264,20 @@ main {
 }
 
 .main-music-container {
-    background-color: #141922;
     display: grid;
-    overflow: auto;
+    grid-template-rows: 100px 1fr;
 
-    /* TODO: This is static and not responsive */
-    /* grid-template-rows: max(1fr, 100px) 1fr; */
-    /* grid-auto-rows: auto; */
-    grid-template-rows: 100px 1fr ;
-
-
-    /* align-items: center; */
-    /* justify-items: center; */
-    /* justify-content: center; */
-
+    background-color: #141922;
 }
+
+/* TODO: Add media query for the music header on very small screens (only 1 row visible) */
 
 .music-nav {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
-    /* grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr)); */
+
     gap: 10px;
-    max-height: 100px;
+    /* max-height: 100px; */
 
     place-items: center;
 
@@ -283,13 +288,17 @@ main {
     font-weight: 800;
     text-align: center;
 
-    /* What is this calculation for bro?
+    /* Make the menu items auto align in the grid (pyramid positioning)
+    
+    What is this calculation for bro?
     6rem is the same MIN value like in the auto-fit grid.
     Multiply times 2 (first example) for the current number of columns we have
     Add 10px which is the gap size. x-times MINUS 1 the amount of columns
     6 columns == 5 gaps == 5 x 10px
+    
     This means: "A new row will appear when the screen size, is smaller than this calculation" */
 
+    /* From here on: nested container styling */
     container-type: inline-size;
 
     /* when we have 2 columns (visually 1)*/
@@ -299,14 +308,6 @@ main {
             grid-column: span 2;
         }
     }
-    
-    /* when we have 4 columns (visually 2)* - no need for this with 6 nav-items/
-    @container (calc(6rem * 4 + 30px) < width < calc(6rem * 6 + 50px)) {
-    }
-
-    /* when we have 6 columns (visually 3) - no need for this with 6 nav-items*/
-    /* @container (calc(6rem * 6 + 50px) < width < calc(6rem * 8 + 70px)) {
-    } */
 
     /* when we have 8 columns (visually 4) */
     @container (width > calc(6rem * 8 + 70px)) and ( width < calc(6rem * 10 + 90px)) {
@@ -331,13 +332,12 @@ main {
     }
 }
 
-
 .music-nav > a {
     color: var(--spotify-grey);
     position: relative;
-    /* width: max-content; */
 }
 
+/* Effects on music nav */
 .music-nav-item::after {
     --underline-width: 40px;
 
@@ -347,14 +347,14 @@ main {
     height: 2px;
     border-radius: 100px;
 
-    
     position: absolute;
-    
+
     /* Start exactly in the middle of the a-tag */
     bottom: -2px;
     left: calc(50% - var(--underline-width)/2);
 }
 
+/* Effects on music nav */
 .music-nav > a:hover::after {
     background: var(--spotify-light-green);
     transition: 350ms ease-in-out;
@@ -363,6 +363,7 @@ main {
     width: 100%;
 }
 
+/* Effects on music nav */
 .active-menu-item::after {
     --underline-width: 40px;
 
@@ -372,7 +373,6 @@ main {
     height: 2px;
     border-radius: 100px;
 
-    
     position: absolute;
     
     /* Start exactly in the middle of the a-tag */
@@ -380,16 +380,14 @@ main {
     left: calc(50% - var(--underline-width)/2);
 }
 
-
-
 .albums-container {
-    /* TODO: Player Controls should stay on top. Main grids needs to be adjusted so that the page can scroll underneath! */
     display: grid;
     grid-template-rows: repeat(3, max-content);
 
     padding: 0 2%;
 }
 
+/* Set grid for all articles in the albums container (default) */
 .albums-container article {
     display: grid;
     grid-template-rows: max-content max-content 1fr;
@@ -399,7 +397,7 @@ main {
     padding-bottom: 2rem;
 }
 
-/* Variant without a subtitle */
+/* Grid variant without a subtitle */
 .albums-container .recently-played-container {
     grid-template-rows: max-content 1fr;
 }
@@ -407,9 +405,8 @@ main {
 .album-card-container {
     display: grid;
 
-    /* Use auto-fill here to ensure album cards are always the same grid size - regardless of the columns */
+    /* Use auto-fill here to ensure album cards are always stacked to the left and not fill up all the columns - regardless of the columns */
     grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
-    gap: 10px;
 }
 
 .album-card {
@@ -452,17 +449,20 @@ article:not(.recently-played-container) > .album-card-container > .album-card {
 footer {
     grid-row: footer;
     grid-column: footer;
+    
+    background-color: #282828;
+
+    /* Make the footer sticky */
     position: sticky;
     bottom: 0;
     z-index: 1001;
     
-    background-color: #282828;
-
     display: grid;
     grid-template-columns:
-    [active-song-start] var(--left-nav-width) [active-song-end player-controls-start]
+    [active-song-start]
+    var(--left-nav-width) [active-song-end player-controls-start]
     1fr [player-controls-end volume-control-start]
-    .3fr [volume-control-end];
+    300px [volume-control-end];
 
     align-items: center;
 }
