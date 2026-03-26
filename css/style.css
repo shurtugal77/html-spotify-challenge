@@ -376,29 +376,29 @@ main {
 .albums-container {
     /* TODO: Player Controls should stay on top. Main grids needs to be adjusted so that the page can scroll underneath! */
     display: grid;
-    grid-template-rows: max-content .1fr .1fr;
+    grid-template-rows: repeat(3, max-content);
 
     padding: 0 2%;
 }
 
-.recently-played-container {
+.albums-container article {
     display: grid;
-    /* Title, Subtitle, Card-Container */
-    grid-template-rows: 50px 1fr;
-
+    grid-template-rows: max-content max-content 1fr;
     align-items: center;
+    gap: 1rem;
 
+    padding-bottom: 2rem;
 }
 
-.recently-played-container > h1 {
-    padding-bottom: 10px;
+/* Variant without a subtitle */
+#recently-played-container {
+    grid-template-rows: max-content 1fr;
 }
 
 .album-card-container {
     display: grid;
-    /* grid-template-columns: repeat(auto-fit, min(150vw, 200px)); */
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    /* grid-template-columns: repeat(auto-fit, 160px); */
+    /* Use auto-fill here to ensure album cards are always the same grid size - regardless of the columns */
+    grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
     gap: 10px;
 }
 
@@ -406,6 +406,7 @@ main {
     display: grid;
     grid-template-rows: 1fr min-content min-content;
 
+    /* Align the image, title and subitle centered on the card */
     align-items: center;
     justify-items: center;
     gap: 15px;
