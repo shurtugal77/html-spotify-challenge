@@ -57,7 +57,7 @@ body {
 
     grid-template-rows: 
         [leftnav-start header-start] 100px [header-end main-start]
-        1fr [leftnav-end main-end footer-start]
+        1fr [ main-end footer-start]
         100px [footer-end];
 
     grid-template-columns:
@@ -106,8 +106,12 @@ body {
 .left-nav {
     grid-column: leftnav;
     grid-row: leftnav;
-    
     background-color: #000000;
+
+    position: sticky;
+    top: 0;
+    align-self: start;
+    min-height: calc(100svh - 100px);
 
     display: grid;
     grid-template-rows: 100px 1fr;
@@ -136,7 +140,6 @@ aside {
     display: grid;
     grid-template-rows: 1fr;
     align-items: center;
-
     gap: 10px;
 
     padding-bottom: 30px;
@@ -250,6 +253,7 @@ main {
 .main-music-container {
     background-color: #141922;
     display: grid;
+    overflow: auto;
 
     /* TODO: This is static and not responsive */
     /* grid-template-rows: max(1fr, 100px) 1fr; */
