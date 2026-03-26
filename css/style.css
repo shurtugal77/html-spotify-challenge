@@ -415,6 +415,11 @@ main {
     align-self: start;
 }
 
+/* Variant for the user created content */
+.user-created-container > .album-card-container > .album-card {
+    grid-template-rows: 1fr min-content;
+}
+
 .album-image {
     width: 150px;
 }
