@@ -8,7 +8,9 @@
     --left-nav-padding: 1rem;
     --vertical-border-width: 3px;
 
-    --left-nav-width: 250px;
+    --left-nav-padding-xs: .5rem;
+
+    
 
     /* Footer Sizes */
 
@@ -64,6 +66,9 @@ a:visited {
 }
 
 body {
+    /* Local variable */
+    --left-nav-width: 250px;
+
     display: grid;
 
     /* row setup with custom named grid lines */
@@ -85,7 +90,6 @@ body {
     min-height: 100vh;
     min-height: 100svh;
 }
-
 
 /* Top Header Section */
 .top-menu {
@@ -125,7 +129,6 @@ body {
     border-width: 2px;
 }
 
-
 /* Left Section */
 .left-nav {
     grid-column: leftnav;
@@ -152,8 +155,22 @@ body {
 }
 
 .logo {
-    width: 150px;
-    align-self: center;
+    /* Setting the logo within css for easier media queries */
+    background-image: url(../assets/img/logo.svg);
+
+    
+    /* Center the background within the container - disable repeat of background image */
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    /* Scales the background image */
+    width: 90%;
+
+    /* Needs to be set for the image to appear because of the "background-image" usage on an empty header */
+    height: 100%;
+
+    /* Always justify the container left so the logo aligns with the other menu items */
     justify-self: start;
 }
 
@@ -178,7 +195,8 @@ aside {
     left: calc(-1* var(--left-nav-padding));
 }
 
-.left-menu > a {
+
+.left-menu-button {
     display: grid;
     grid-template-columns: .3fr 1fr;
 
@@ -297,6 +315,118 @@ aside {
     font-size: 1.1rem;
 }
 
+/* Media query to collapse left navbar */
+@media screen and (max-width: 750px) {
+    /* Change the left nav width */
+    body {
+        /* Local variable */
+        --left-nav-width: 70px;
+
+        grid-template-columns:
+        [leftnav-start footer-start]
+        var(--left-nav-width) [leftnav-end header-start main-start]
+        1fr [header-end main-end footer-end];
+        
+        /* Transition effect when the left nav shrinks */
+        transition: 300ms ease-in-out;
+    }
+
+    /* Adjust the grid for the changed logo height */
+    .left-nav {
+    grid-template-rows: max-content 1fr;
+
+    padding-left: var(--left-nav-padding-xs);
+    padding-right: var(--left-nav-padding-xs);
+    }
+
+    /* LOGO */
+    /* Switch to small logo */
+    .logo {
+        background-image: url(../assets/img/logo-small.svg);
+        
+        /* Scales the background image to the size of the left-menu-icons*/
+        width: 30px;
+
+        /* Centers the container for the background image */
+        justify-self: center;
+
+        /* Set the height for the logo container to work with the grid row*/
+        min-height: 60px;
+    }
+
+    /* MENU BUTTONS */
+    /* Disable the relative position for the active button effect */
+    .left-menu {
+        position: static;
+    }
+
+    /* Disable the active button effect */
+    .left-menu-button {
+        padding: 0;
+        border: none;
+        /* Disable the grid column for the left-menu-button text */
+        grid-template-columns: 1fr;
+    }
+
+    /* Disable the active button hover effect */
+    .left-menu-button:hover {
+        border: none;
+    }
+
+    /* Place the nav-icons center */
+    .left-menu-icons {
+        place-self: center;
+    }
+
+    /* Disables the text of the left-menu-buttons */
+    .left-menu h3 {
+        display: none;
+    }
+
+    aside {
+        /* Override the grid-row template since the playlist menu is disabled */
+        grid-template-rows: min-content 1fr;
+        gap: 0px;
+    }
+
+    /* PLAYLIST */
+    /* Disables the entire playlist section */
+    .playlist-menu {
+        display: none;
+    }
+
+    /* PROFILE */
+    /* Centers the profile grid */
+    .profile-menu {
+        justify-items: center;
+    }
+
+    /* Override the grid since the text is disabled */
+    .app-install-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Disables the app-install text */
+    .app-install-text {
+        display: none;
+    }
+
+    /* Disables the profile divider */
+    .line-divider {
+        display: none;
+    }
+
+    /* Override the grid since the text is disabled */
+    .profile-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Disables the profile text */
+    .profile-text {
+        display: none;
+    }
+}
+
 
 /* Main Section */
 main {
@@ -319,8 +449,6 @@ main {
         grid-template-rows: min-content 1fr;
     }
 }
-
-/* TODO: Add media query for the music header on very small screens (only 1 row visible) */
 
 .music-nav {
     display: grid;
