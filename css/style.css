@@ -314,6 +314,12 @@ main {
     background-color: #141922;
 }
 
+@media screen and (max-width: 750px) {
+    .main-music-container {
+        grid-template-rows: min-content 1fr;
+    }
+}
+
 /* TODO: Add media query for the music header on very small screens (only 1 row visible) */
 
 .music-nav {
@@ -325,7 +331,7 @@ main {
 
     place-items: center;
 
-    padding: 1% 5%;
+    padding: 1rem;
 
     text-transform: uppercase;
     font-size: 1.1rem;
