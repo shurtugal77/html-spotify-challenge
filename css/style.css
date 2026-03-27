@@ -610,6 +610,8 @@ main {
 
     /* Cards start all on same horizontal level */
     align-self: start;
+
+    position: relative;
 }
 
 /* Variant for the album cards without subtitles */
@@ -617,9 +619,57 @@ article:not(.recently-played-container) > .album-card-container > .album-card {
     grid-template-rows: 1fr min-content;
 }
 
+/* Necessary for the ::after effects */
+.album-image-container{
+    position: relative;
+
+    /* Grid sets the div the same size as the image within */
+    display: grid;
+    place-self: center;
+}
+
 .album-image {
     width: 170px;
 }
+
+/* Sets the album image opacity lower when hovering over a image-container so the play icon is more visible
+Hovering over the container! is necessary to also lower the opactiy when hovering over the svg play icon */
+.album-image-container:hover {
+    .album-image {
+        opacity: .3;
+        transition: 180ms;
+    }
+}
+
+/* Hover effect shows a play button in album-images
+The "image-container" is neccessary since ::after can't be applied to <img> */
+.album-image-container::after {
+    /* Local variable */
+    --play-icon-width: 70px;
+
+    /* Hide on default to make the transition possible */
+    opacity: 0;
+
+    content: '';
+    background-image: url(../assets/img/play.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    /* 100% for the svg container to span the whole height of the image and positioning automatically centers it */
+    height: 100%;
+    width: var(--play-icon-width);
+
+    position: absolute;
+    left: calc(50% - var(--play-icon-width)/2);
+}
+
+.album-image-container:hover::after {
+    /* Transition effect when hovering over the album-image */
+    opacity: 1;
+    transition: 180ms;
+}
+
 
 .album-name {
     font-weight: bold;
