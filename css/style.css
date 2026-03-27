@@ -444,6 +444,7 @@ main {
     background-color: #141922;
 }
 
+/* Media qery to adjust the header hight for the music navigation */
 @media screen and (max-width: 750px) {
     .main-music-container {
         grid-template-rows: min-content 1fr;
@@ -628,6 +629,10 @@ article:not(.recently-played-container) > .album-card-container > .album-card {
 
 /* Footer Section */
 footer {
+    /* Local variable */
+    /* TODO: this is a workaround since the media queries are setting the left-nav width */
+    --left-nav-width: 250px;
+
     grid-row: footer;
     grid-column: footer;
     
@@ -723,19 +728,20 @@ footer {
 
     /* Minmax to define the minimum width the progress bar will shrink to */
     grid-template-columns: min-content minmax(6rem, 1fr) min-content;
-    gap: 50px;
+    gap: 20px;
 
     align-items: center;
     justify-items: center;
 
     /* Padding only for progress bar */
-    padding: 0 5.5rem;
+    padding: 0 2rem;
 }
 
 .progress-bar-background {
     background-color: var(--progressbar-background);
     border-radius: 20px;
     height: 6px;
+
     /* Necessary to always draw the background */
     width: 100%;
 }
@@ -778,4 +784,79 @@ footer {
 .volume-percentage {
     /* Fake controls the volume */
     width: var(--volume-percentage);
+}
+
+/* Media query to collapse/adjust the footer on medium screen width */
+@media screen and (max-width: 1050px) {
+    /* Reduce the padding even further */
+    .progress-bar {
+    padding: 0 .5rem;
+
+    /* Transition effect when the padding shrinks */
+    transition: 300ms ease-in-out;
+    }
+
+    .player-controls {
+    /* Remove Padding */
+    padding: 0;
+    }
+
+    /* Reduce the grid size */
+    .volume-control {
+    grid-template-columns: repeat(3, 1fr) 3rem;
+    gap: 5px;
+
+    /* Transition effect when the grid shrinks */
+    transition: 300ms ease-in-out;
+    }
+}
+
+/* Media query to collapse left navbar */
+@media screen and (max-width: 750px) {
+    /* Override grid so that the active song takes minimal space */
+    footer {
+        grid-template-columns:
+        [active-song-start]
+        min-content [active-song-end player-controls-start]
+        1fr [player-controls-end volume-control-start]
+        auto [volume-control-end];
+    }
+
+    /* Override grid for the active song, so that the icons can stack */
+    .active-song {
+        padding-left: var(--left-nav-padding-xs);
+        grid-template-columns: .5fr 1fr 1fr;
+        gap: 5px;
+
+        /* Transition effect when the left nav shrinks */
+        transition: 300ms ease-in-out;
+    }
+
+    /* Override grid so that the image takes the whole column and reduces its size */
+    .active-song-image {
+        grid-column: 1;
+        grid-row: span 2;
+        width: 40px;
+    }
+
+    /* Override grid so that the text uses the whole column */
+    .active-song-details {
+        grid-column: 2;
+        grid-row: span 2;
+    }
+
+    /* Override grid so that the browse icon takes the last column */
+    .active-song-browse {
+        grid-column: 3;
+    }
+
+    /* Reduce font size */
+    .active-song-name {
+        font-size: .8rem;
+    }
+
+    /* Reduce font size */
+    .active-song-interpret {
+        font-size: .7rem;
+    }
 }
