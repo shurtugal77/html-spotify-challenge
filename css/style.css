@@ -16,6 +16,7 @@
     --spotify-grey: #878787;
     --spotify-light-green: #7BB32B;
     --spotify--dark-green: #17904B;
+    --spotify-white: #F5F5F5;
 
     --progressbar-background: #5A5A5A;
     --progressbar-active: #C1C1C1;
@@ -40,7 +41,11 @@
 }
 
 p {
-    color: white;
+    color: var(--spotify-white);
+}
+
+h3 {
+    color: var(--spotify-grey)
 }
 
 
@@ -52,19 +57,6 @@ a {
 a:visited {
     /* Toggle visited link color for all a-tags */
     color: white;
-}
-
-.left-menu-button {
-    /* Padding between the green active/hover selector and the menu icons.
-    Calculation: difference between the applied left-nav padding and the border width, so that the svg perfectly aligns with the grid line again*/
-    padding-left: calc(var(--left-nav-padding) - var(--vertical-border-width));
-
-    /* A-tags are insible when not hovered - but the standard padding is present with this solution */
-    border-left: var(--vertical-border-width) solid transparent;
-}
-
-.left-menu-button:hover {
-    border-left: var(--vertical-border-width) solid var(--spotify-light-green);
 }
 
 .object-fit-contain {
@@ -116,7 +108,7 @@ body {
 .update-app-button {
     margin-right: 10px;
     
-    border: 1px solid white;
+    border: 1px solid var(--spotify-white);
     border-radius: 1.5rem;
     padding: 10px 35px;
 
@@ -126,7 +118,11 @@ body {
 }
 
 .update-app-button:hover {
-    background-color: var(--spotify-light-green);
+    transition: 150ms ease-in-out;
+    background-color: var(--spotify--dark-green);
+
+    font-size: .9rem;
+    border-width: 2px;
 }
 
 
@@ -189,8 +185,30 @@ aside {
     align-items: center;
 }
 
+.left-menu-button {
+    /* Padding between the green active/hover selector and the menu icons.
+    Calculation: difference between the applied left-nav padding and the border width, so that the svg perfectly aligns with the grid line again*/
+    padding-left: calc(var(--left-nav-padding) - var(--vertical-border-width));
+
+    /* A-tags are insible when not hovered - but the standard padding is present with this solution */
+    border-left: var(--vertical-border-width) solid transparent;
+}
+
+.left-menu-button:hover {
+    border-left: var(--vertical-border-width) solid var(--spotify--dark-green);
+    transition: 250ms ease-in-out;
+}
+
 .left-menu-icons {
     height: 30px;
+}
+
+.left-menu-active {
+    border-left: var(--vertical-border-width) solid var(--spotify-light-green);
+    
+    & h3 {
+    color: var(--spotify-white) ;
+    }
 }
 
 .playlist-menu {
@@ -200,8 +218,9 @@ aside {
     gap: 20px;
 }
 
-.playlist-menu > h3 {
+.playlist-heading {
     text-transform: uppercase;
+    color: var(--spotify-white);
 }
 
 .create-playlist-container {
@@ -210,6 +229,11 @@ aside {
     align-items: center;
 
     gap: 5px;
+}
+
+.create-playlist-text {
+    color: var(--spotify-grey);
+    font-weight: 700;
 }
 
 .create-playlist-icon {
@@ -376,7 +400,7 @@ main {
 
 /* Effects on music nav */
 .music-nav > a:hover::after {
-    background: var(--spotify-light-green);
+    background: var(--spotify--dark-green);
     transition: 350ms ease-in-out;
     
     left: 0;
@@ -388,7 +412,7 @@ main {
     --underline-width: 40px;
 
     content: '';
-    background: var(--spotify--dark-green);
+    background: var(--spotify-light-green);
     width: var(--underline-width);
     height: 2px;
     border-radius: 100px;
