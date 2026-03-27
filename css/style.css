@@ -89,6 +89,9 @@ body {
     always extends the body to the screen viewport height */
     min-height: 100vh;
     min-height: 100svh;
+
+    /* Transition effect when the left nav grows */
+    transition: 300ms ease-in-out;
 }
 
 /* Top Header Section */
@@ -665,6 +668,9 @@ footer {
 
     justify-items: center;
     align-items: center;
+
+    /* Transition effect when the footer grows */
+    transition: 300ms ease-in-out;
 }
 
 .active-song-image {
@@ -735,6 +741,9 @@ footer {
 
     /* Padding only for progress bar */
     padding: 0 2rem;
+
+    /* Transition effect when the footer grows */
+    transition: 300ms ease-in-out;
 }
 
 .progress-bar-background {
@@ -774,6 +783,9 @@ footer {
 
     /* Grid column is set to auto - so we apply a right padding that the volume control always has the same padding as the left sidebar */
     padding-right: var(--left-nav-padding);
+
+    /* Transition effect when the footer grows */
+    transition: 300ms ease-in-out;
 }
 
 /* Size for all font-awesome icons */
