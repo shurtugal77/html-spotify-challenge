@@ -102,10 +102,33 @@ body {
     background-color: #080B12;
 
     display: grid;
+    grid-template-columns: max-content max-content;
     align-items: center;
     justify-items: end;
+    justify-content: end;
 }
 
+
+/* Easteregg audio player - only show when screen is larger than 1500px so it does not interfere with small size media queries*/
+@media screen and (width < 1500px) {
+    .audio-player {
+    display: none;
+    }
+}
+
+.audio-player {
+    margin-right: 2rem;
+    height: 2.5rem;
+    border: 1px solid var(--spotify-white);
+    border-radius: 1.5rem;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-panel {
+    opacity: .9;
+    background-color: var(--spotify--dark-green);
+    color: var(--spotify--dark-green);
+}
 
 .update-app-button {
     margin-right: 10px;
@@ -619,6 +642,29 @@ article:not(.recently-played-container) > .album-card-container > .album-card {
     grid-template-rows: 1fr min-content;
 }
 
+.album-image {
+    width: 170px;
+}
+
+.album-name {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.album-subtitle {
+    font-size: .75rem;
+    font-weight: 700;
+    color: var(--spotify-grey);
+}
+
+.album-subtitle,.album-name {
+    /* Text is always within 95% of album-card-container size -> image is always bigger than text */
+    max-width: 165px;
+    text-align: center;
+
+    word-break: break-word;
+}
+
 /* Necessary for the ::after effects */
 .album-image-container{
     position: relative;
@@ -628,9 +674,6 @@ article:not(.recently-played-container) > .album-card-container > .album-card {
     place-self: center;
 }
 
-.album-image {
-    width: 170px;
-}
 
 /* Sets the album image opacity lower when hovering over a image-container so the play icon is more visible
 Hovering over the container! is necessary to also lower the opactiy when hovering over the svg play icon */
@@ -668,25 +711,6 @@ The "image-container" is neccessary since ::after can't be applied to <img> */
     /* Transition effect when hovering over the album-image */
     opacity: 1;
     transition: 180ms;
-}
-
-
-.album-name {
-    font-weight: bold;
-    font-size: 1rem;
-}
-
-.album-subtitle {
-    font-size: .75rem;
-    font-weight: 700;
-    color: var(--spotify-grey);
-}
-
-.album-subtitle,.album-name {
-    /* Text is always within 95% of album-card-container size -> image is always bigger than text */
-    max-width: 95%;
-    
-    text-align: center;
 }
 
 .profile-circle {
