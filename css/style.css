@@ -2,31 +2,29 @@
 
 
 :root {
+    /* Default color for all text */
     color: white;
 
     /* Sizes */
     --left-nav-padding: 1rem;
-    --vertical-border-width: 3px;
-
     --left-nav-padding-xs: .5rem;
 
-    
+    --left-nav-width: 250px;
+    --left-nav-width-xs: 70px;
 
-    /* Footer Sizes */
+    --vertical-border-width: 3px;
 
     /* Colors */
     --spotify-grey: #878787;
     --spotify-light-green: #7BB32B;
     --spotify--dark-green: #17904B;
     --spotify-white: #F5F5F5;
-
     --progressbar-background: #5A5A5A;
     --progressbar-active: #C1C1C1;
 
     /* Fake controls for progress bars */
     --song-percentage: 30%;
     --volume-percentage: 65%;
-
 
     /* Font */
     font-family: "Montserrat", sans-serif;
@@ -66,9 +64,6 @@ a:visited {
 }
 
 body {
-    /* Local variable */
-    --left-nav-width: 250px;
-
     display: grid;
 
     /* row setup with custom named grid lines */
@@ -322,12 +317,9 @@ aside {
 @media screen and (max-width: 750px) {
     /* Change the left nav width */
     body {
-        /* Local variable */
-        --left-nav-width: 70px;
-
         grid-template-columns:
         [leftnav-start footer-start]
-        var(--left-nav-width) [leftnav-end header-start main-start]
+        var(--left-nav-width-xs) [leftnav-end header-start main-start]
         1fr [header-end main-end footer-end];
         
         /* Transition effect when the left nav shrinks */
@@ -569,6 +561,16 @@ main {
     padding: 0 2%;
 }
 
+.album-container-title {
+    font-size: 1.8rem;
+}
+
+.album-container-subtitle {
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--spotify-grey);
+}
+
 /* Set grid for all articles in the albums container (default) */
 .albums-container article {
     display: grid;
@@ -588,9 +590,12 @@ main {
     display: grid;
 
     /* Use auto-fill here to ensure album cards are always stacked to the left and not fill up all the columns - regardless of the columns */
-    grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(170px, 100%), 1fr));
 
-    gap: .8rem;
+    gap: .5rem;
+
+    /* Transition effect when the album cards move */
+    transition: 300ms ease-in-out;
 }
 
 .album-card {
@@ -613,17 +618,25 @@ article:not(.recently-played-container) > .album-card-container > .album-card {
 }
 
 .album-image {
-    width: 150px;
+    width: 170px;
 }
 
 .album-name {
     font-weight: bold;
-    font-size: 1.1rem;
-    text-align: center;
+    font-size: 1rem;
 }
 
-.ablum-subtitle {
+.album-subtitle {
+    font-size: .75rem;
+    font-weight: 700;
     color: var(--spotify-grey);
+}
+
+.album-subtitle,.album-name {
+    /* Text is always within 95% of album-card-container size -> image is always bigger than text */
+    max-width: 95%;
+    
+    text-align: center;
 }
 
 .profile-circle {
@@ -632,10 +645,6 @@ article:not(.recently-played-container) > .album-card-container > .album-card {
 
 /* Footer Section */
 footer {
-    /* Local variable */
-    /* TODO: this is a workaround since the media queries are setting the left-nav width */
-    --left-nav-width: 250px;
-
     grid-row: footer;
     grid-column: footer;
     
@@ -823,7 +832,7 @@ footer {
     }
 }
 
-/* Media query to collapse left navbar */
+/* Media query to collapse/adjust the footer when the left-nav also shrinks */
 @media screen and (max-width: 750px) {
     /* Override grid so that the active song takes minimal space */
     footer {
