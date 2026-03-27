@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 :root {
     color: white;
 
@@ -20,6 +23,13 @@
     /* Fake controls for progress bars */
     --song-percentage: 30%;
     --volume-percentage: 65%;
+
+
+    /* Font */
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
 }
 
 /* Modern Reset */
