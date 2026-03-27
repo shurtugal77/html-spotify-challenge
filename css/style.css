@@ -450,12 +450,15 @@ main {
     display: grid;
 
     /* Use auto-fill here to ensure album cards are always stacked to the left and not fill up all the columns - regardless of the columns */
-    grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr));
+
+    gap: .8rem;
 }
 
 .album-card {
     display: grid;
     grid-template-rows: 1fr min-content min-content;
+
 
     /* Align the image, title and subitle centered on the card */
     align-items: center;
